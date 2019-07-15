@@ -9,6 +9,7 @@ function parseArgumentsIntoOptions(rawArgs){
             '--yes': Boolean,
             '--install': Boolean,
             '--name': String,
+            '--logo': Boolean,
             '-g': '--git',
             '-y': '--yes',
             '-i': '--install',
@@ -19,6 +20,7 @@ function parseArgumentsIntoOptions(rawArgs){
         }
     );
     return {
+        logo: args['--logo'] || false,
         skipPrompts: args['--yes'] || false,
         git: args['--git'] || false,
         template: args._[0],

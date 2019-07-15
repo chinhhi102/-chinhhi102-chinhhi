@@ -19,12 +19,22 @@ async function copyTemplateFiles(options){
 
 async function initGit(options) {
     const result = await execa('git', ['init'], {
-        cwd: options.targetDirectory,
+        cwd: options.targetDirectory + '/' + options.nameProject,
     })
     if(result.failed){
         return Promise.reject(new Error('Failed to initialize Git'));
     }
     return;
+}
+
+async function printLogo() {
+    console.log(chalk.red.bold(`
+-----------------------------------------------------------------
+                 o         _        _            _
+      _o        /\\_      _ \\\\o     (_)\\__/o     (_)
+    _< \\_      _>(_)    (_)/<_       \\_| \\      _|/' \\/
+    (_)>(_)    (_)           (_)      (_)       (_)'  _\\o_
+-----------------------------------------------------------------`))
 }
 
 export async function createProject(options){
@@ -48,6 +58,11 @@ export async function createProject(options){
     }
 
     const tasks = new Listr([
+        {
+            title: 'Create by Chinhhi',
+            task: () => printLogo(),
+            enabled: () => options.logo
+        },
         {
             title: ('Create files ' + chalk.green.bold('success!')),
             task: () => copyTemplateFiles(options),
