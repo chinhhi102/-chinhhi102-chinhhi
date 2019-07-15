@@ -58,15 +58,14 @@ async function promptForMissingOptions(options){
         })
     }
 
-    if(!options.git){
-        questions.push({
-            type: 'confirm',
-            name: 'git',
-            message: 'Initiaize a git repository?',
-            choices: ['JavaScript', 'TypeScript', 'C++'],
-            default: false
-        })
-    }
+    // if(!options.git){
+    //     questions.push({
+    //         type: 'confirm',
+    //         name: 'git',
+    //         message: 'Initiaize a git repository?',
+    //         default: false
+    //     })
+    // }
 
     const answers = await inquirer.prompt(questions);
 

@@ -7,6 +7,7 @@ import execa from 'execa';
 import Listr from 'listr';
 import { projectInstall } from 'pkg-install';
 
+const os = require('os');
 const access = promisify(fs.access);
 const copy = promisify(ncp);
 
@@ -31,17 +32,15 @@ export async function createProject(options){
         ... options,
         targetDirectory: options.targetDirectory || process.cwd(),
     }
-
-    const currentFileUrl = import.meta.url;
+    const currentFileUrl = (os.EOL=="\r\n") ? (new URL(import.meta.url).pathname).substring(1) : (new URL(import.meta.url).pathname);
     const templateDir = path.resolve(
-        new URL(currentFileUrl).pathname,
+        currentFileUrl,
         '../../templates',
         options.template.toLowerCase()
     );
     options.templateDirectory = templateDir;
 
     try {
-        console.log(templateDir);
         await access(templateDir, fs.constants.R_OK);
     } catch (err) {
         console.error('%s Invalid template name', chalk.red.bold('ERROR!'));
@@ -50,7 +49,7 @@ export async function createProject(options){
 
     const tasks = new Listr([
         {
-            title: 'Copy project files',
+            title: ('Create files ' + chalk.green.bold('success!')),
             task: () => copyTemplateFiles(options),
         },
         {
