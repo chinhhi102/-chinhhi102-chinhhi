@@ -41,9 +41,9 @@ export async function createProject(options){
     options.templateDirectory = templateDir;
 
     try {
+        console.log(templateDir);
         await access(templateDir, fs.constants.R_OK);
     } catch (err) {
-        console.log(templateDir);
         console.error('%s Invalid template name', chalk.red.bold('ERROR!'));
         process.exit(1);
     }
