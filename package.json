@@ -1,0 +1,32 @@
+{
+  "name": "@chinhhi102/chinhhi",
+  "version": "1.0.1",
+  "description": "A CLI to bootstrap my projects",
+  "main": "src/index.js",
+  "bin": {
+    "@chinhhi102/chinhhi": "bin/chinhhi",
+    "chinhhi": "bin/chinhhi"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "cli",
+    "chinhhi"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "arg": "^4.1.1",
+    "chalk": "^2.4.2",
+    "esm": "^3.2.25",
+    "execa": "^2.0.3",
+    "inquirer": "^6.5.0",
+    "listr": "^0.14.3",
+    "ncp": "^2.0.0",
+    "pkg-install": "^1.0.0"
+  }
+}
